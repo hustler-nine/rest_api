@@ -20,7 +20,7 @@
                     <h3>
                     Login
                     </h3>
-                    <form id="login-form" class="form-group" method="post">
+                    <form id="login-form" class="form-group" method="post" action="{% url 'accounts-api:login' %}?next=/api/v1/chat/chat/">
                         {% csrf_token %}
                         <div class="row">
                             <div class="input-field col s12">

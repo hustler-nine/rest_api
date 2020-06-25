@@ -19,17 +19,6 @@ from datetime import timedelta
 # Create your views here.
 
 
-def is_active(request):
-    user_activity_objects = OnlineUserActivity.get_user_activities(timedelta(minutes=60))
-    active_users = (user for user in user_activity_objects)
-    users = User.objects.exclude(username=request.user.username)
-    for user in users:
-        if user in active_users:
-            return True
-        else:
-            return False
-
-
 def index(request):
     if request.user.is_authenticated:
         return redirect('chat-api:chats')
@@ -73,7 +62,7 @@ def chat_view(request):
             active_users_id.append(active_id.id)
         for active in active_users_queryset:
             active_users.append(active)
-        normal_users_queryset_exclude_you_from_list = User.objects.exclude(username=request.user.username)
+        normal_users_queryset_exclude_you_from_list = OnlineUserActivity.objects.exclude(user=request.user)
         """exclude online users from all users"""
         normal_users_queryset = normal_users_queryset_exclude_you_from_list.exclude(pk__in=active_users_id)
         normal_users = []
@@ -100,7 +89,7 @@ def message_view(request, sender, receiver):
             active_users_id.append(active_id.id)
         for active in active_users_queryset:
             active_users.append(active)
-        normal_users_queryset_exclude_you_from_list = User.objects.exclude(username=request.user.username)
+        normal_users_queryset_exclude_you_from_list = OnlineUserActivity.objects.exclude(user=request.user)
         """exclude online users from all users"""
         normal_users_queryset = normal_users_queryset_exclude_you_from_list.exclude(pk__in=active_users_id)
         normal_users = []

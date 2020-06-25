@@ -3,7 +3,7 @@
 
 <nav class="black lighten-3">
     <div class="nav-wrapper container">
-      <a href="/api/v1/chat/chat/" class="brand-logo">Chat</a>
+      <a href="{% url 'chat-api:chats' %}" class="brand-logo">Chat</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a href="">{{ request.user.username }}</a></li>
           <li><a href="{% url 'accounts-api:logout' %}?next=/api/v1/accounts/login/"><i class="material-icons">power_settings_new</i></a></li>
@@ -31,10 +31,11 @@
                 <a href="{% url 'chat-api:chat' request.user.id user.id %}" id="user{{ user.id }}" class="collection-item row">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT300BAyRnpGukBNCNKaFN0QQW2Y7y5BaV3FmWCxlE8mTs1Hy5x&usqp=CAU" class="col s4">
                     <div class="col s8">
-                        <span class="title" style="font-weight: bolder">{{user.username}}</span>
-                        <table>
-                <tr ><th style="color: red">Offline</th><td></td></tr>
-                       </table>
+                        <span class="title" style="font-weight: bolder">{{user.user}}</span>
+                         <table>
+                             <tr><th>Last Seen</th><td>{% if user.last_activity %}{{ user.last_activity|timesince }}{% else %}awhile{% endif %} ago</td></tr>
+                             <tr><th style="color: red">Offline</th><td></td></tr>
+                         </table>
           </div>
                 </a>
                 {% endfor %}
@@ -96,9 +97,6 @@
                 });
             }, 1000)
         })
-
-
-
 
 </script>
 

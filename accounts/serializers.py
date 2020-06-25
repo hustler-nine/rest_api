@@ -11,11 +11,10 @@ class ProfileUserSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     profile_user = ProfileUserSerializer(source='profile')
-    online = serializers.ReadOnlyField(source='profile.online')
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'password', 'email', 'profile_user', 'online',)
+        fields = ('id', 'username', 'password', 'email', 'profile_user',)
         write_only_fields = ('password',)
         read_only_fields = ('id',)
 
