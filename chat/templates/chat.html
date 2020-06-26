@@ -11,14 +11,14 @@
     </div>
 </nav>
     <div class="section" style="height: 80vh">
-    <div class="row">
+    <div class="row" style="background-color: darkorange">
         <div class="col s3">
         <div class="card">
             <div id="users" class="collection">
                 {% for active in active_users %}
                 <a href="{% url 'chat-api:chat' request.user.id active.id %}" id="user{{ active.id }}" class="collection-item row">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT300BAyRnpGukBNCNKaFN0QQW2Y7y5BaV3FmWCxlE8mTs1Hy5x&usqp=CAU" class="col s4">
-                    <div class="col s8">
+                    <div class="col s8" style="background-color: black">
                         <span class="title" style="font-weight: bolder">{{ active.user }}</span>
                       <table>
                           <tr ><th style="color: blue">Online</th><td></td></tr>
@@ -30,7 +30,7 @@
                 {% for user in users %}
                 <a href="{% url 'chat-api:chat' request.user.id user.id %}" id="user{{ user.id }}" class="collection-item row">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT300BAyRnpGukBNCNKaFN0QQW2Y7y5BaV3FmWCxlE8mTs1Hy5x&usqp=CAU" class="col s4">
-                    <div class="col s8">
+                    <div class="col s8" style="background-color: black">
                         <span class="title" style="font-weight: bolder">{{user.user}}</span>
                          <table>
                              <tr><th>Last Seen</th><td>{% if user.last_activity %}{{ user.last_activity|timesince }}{% else %}awhile{% endif %} ago</td></tr>

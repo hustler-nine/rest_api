@@ -7,7 +7,6 @@ from .serializers import MessageSerializer
 from rest_framework.generics import ListCreateAPIView
 from rest_framework.views import APIView
 from rest_framework import status
-from rest_framework.renderers import TemplateHTMLRenderer, HTMLFormRenderer, StaticHTMLRenderer
 from django.contrib.auth.models import User
 from rest_framework.response import Response
 from django.http.response import JsonResponse, HttpResponse
