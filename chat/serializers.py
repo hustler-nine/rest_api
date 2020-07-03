@@ -14,3 +14,5 @@ class MessageSerializer(serializers.ModelSerializer):
         fields = ('id', 'sender', 'receiver', 'message', 'timestamp',)
 
 
+
+
